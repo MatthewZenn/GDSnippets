@@ -56,4 +56,4 @@ func coinFlip():
 coinFlip() #Called wherever needed.
 ```
 
-The main disadvantage to this, is that it can sometimes break then things when multiple functions are using it. But for our terrain generator that only needs to run once, it works just fine.
+The main disadvantage to this, is that it can sometimes break things when multiple functions are using it. But for our terrain generator that only needs to run once, it works just fine.
