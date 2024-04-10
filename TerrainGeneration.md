@@ -44,3 +44,16 @@ func generate(): #Generates the terrain
 I use ```FastNoiseLite``` to generate one-dimensional noise with a randomly picked seed value. The code is set up to snap the placed blocks to a 16px grid. In my code, I use arrays to randomly select decorations and special blocks. The end results looks like this:
 <br>
 ![Terrain](images/terrian.gif)
+
+In the above code I assigned variables random floats whenever I needed to roll a dice. But a much cleaner and more versitile solution would be to create a function that assignes a global variable:
+<br>
+```gdscript
+var coin = 0 #Place at top of code.
+
+func coinFlip():
+	coin = randf() #randf() will generate a float value between 0 and 1.
+
+coinFlip() #Called wherever needed.
+```
+
+The main disadvantage to this, is that it can sometimes break then things when multiple functions are using it. But for our terrain generator that only needs to run once, it works just fine.
