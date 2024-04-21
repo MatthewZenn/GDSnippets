@@ -150,8 +150,10 @@ Also just called an LFSR, this was the standard for RNG in retro video games. Ev
 ```gdscript
 #Tetris's LFSR
 var seed = 35208 #01000100110001000
+var bit = 1
 
 function lfsr(seed):
+  bit = seed & 1
   seed = ((((seed >> 9) & 1) ^ ((seed >> 1) & 1)) << 15) | (seed >> 1)
   lfsr(seed)
 ```
