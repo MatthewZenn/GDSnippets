@@ -97,7 +97,7 @@ func health(damage: float):
 	elif damage <= Shield:
 		Shield -= damage
   else:
-  Health -= damage
+    Health -= damage
 ```
 <br>
 
