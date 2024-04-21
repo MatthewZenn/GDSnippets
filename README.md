@@ -69,6 +69,7 @@ The main disadvantage to this, is that it can sometimes break things when multip
 # Health and Shield Gating
 Health Gating is a QoL feature in some games that prevents a player from being killed too quickly. It might not be an option for every games, especially in multiplayer shooters where Snipers and Shotguns are in play. But it can be a good accessability in other genres. Implementing such a system is as simple as containing our damage function in an if-statement that checks if the health is above our threshold, and if so, capping the damage to a set value.
 <br>
+
 ```gdscript
 var Health = 100 #Global variable
 
@@ -82,13 +83,36 @@ In this scenario, the function checks if the incoming damage is going to be more
 
 In some games, such as Warframe, you may have both a health and shield bar. This can be gated to prevent the player from taking damage while they still have shield.
 <br>
+
 ```gdscript
 var Health = 100 #Global variables
-var Sheild = 100
+var Shield = 100
 
 func health(damage: float):
 	if damage >= Shield and Shield > 0:
 		Shield = 0
-	else:
+	elif damage <= Shield:
 		Shield -= damage
+  else:
+  Health -= damage
 ```
+<br>
+
+# Titanfall's Ability Recharge
+This is my implementation of the UI for recharging abiliites, as seen in Titanfall 2. To set this up, I set up our ui element for the ability icon and placed a translucent ```ProgressBar``` sized and aligned behind it. The functions below are set up to allow a grenade to be thrown twice, and are placed in our setup code and called in the ```physics_process```. The first function simply decreases the progress bar by 50% if the ability action is pressed, while the second function constinuously refills it when it is below 100%.
+<br>
+
+```gdscript
+func grenade():
+	if Input.is_action_just_pressed("grenade_throw"):
+		if grenade_recharge.value >= 50:
+			grenade_recharge.value -= 50
+      # additional code for grande or other ability
+
+func recharge():
+	if grenade_recharge.value < 100:
+		grenade_recharge.value += 0.2
+```
+<br>
+
+![Recharge](images/recharge.gif)
