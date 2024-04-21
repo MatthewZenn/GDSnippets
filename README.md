@@ -4,7 +4,8 @@ Just some useful Godot snippets for things.
 **Contents:**
 - [Procedural Terrain](#Procedural-Terrain)
 - [Health and Shield Gating](#Health-and-Shield-Gating)
-- [Titanfall's Ability Recharge](#Titanfall's-Ability-Recharge)
+- [Titanfall's Ability Recharge](#Titanfall-Ability-Recharge)
+- [Context Abilities](#Context-Abilities)
 
 <br>
 
@@ -101,7 +102,7 @@ func health(damage: float):
 ```
 <br>
 
-## Titanfall's Ability Recharge
+## Titanfall Ability Recharge
 This is my implementation of the UI for recharging abilities, as seen in Titanfall 2. To set this up, I set up our ui element for the ability icon and placed a translucent ```ProgressBar``` sized and aligned behind it. The functions below are set up to allow a grenade to be thrown twice, and are placed in our setup code and called in the ```physics_process```. The first function simply decreases the progress bar by 50% if the ability action is pressed, while the second function constinuously refills it when it is below 100%.
 <br>
 
@@ -110,13 +111,29 @@ func grenade():
 	if Input.is_action_just_pressed("grenade_throw"):
 		if grenade_recharge.value >= 50:
 			grenade_recharge.value -= 50
-      # additional code for grande or other ability
+      # additional code for grenade or other ability
 
 func recharge():
 	if grenade_recharge.value < 100:
 		grenade_recharge.value += 0.2 #controls the recharge speed
 ```
-Be sure to set the progress bar's ```Fill Mode``` to "Bottom to Top" The resulting effect is this:
+Be sure to set the progress bar's ```Fill Mode``` to "Bottom to Top". The resulting effect is this:
 <br>
 
 ![Recharge](images/recharge.gif)
+<br>
+
+## Context Abilities
+Our player also has an ability that fully restores their health. Combine this with it's longer cooldown, and it proves a vital tool for survival in a firefight. Becasue of this, we want to make sure the player can't waste the ability or accidentlly trigger it. We can modify the code we used for health gating to accomplish this.
+<br>
+
+```gdscript
+func heal():
+	if Input.is_action_just_pressed("res"):
+		if ablility_recharge.value == 100 and Health <= 50:
+			ablility_recharge.value = 0 #This is the code for the cooldown timer
+			Health = 100
+		else:
+			pass
+```
+Here, we prevent the player from activating the ability if their health is above 50%, but this can be set to any ammount, depending on the pacing of your gameplay.
