@@ -6,6 +6,7 @@ Just some useful Godot snippets for things.
 - [Health and Shield Gating](#Health-and-Shield-Gating)
 - [Titanfall's Ability Recharge](#Titanfall-Ability-Recharge)
 - [Context Abilities](#Context-Abilities)
+- [Random Generators](#Random-Generators)
 
 <br>
 
@@ -53,6 +54,7 @@ func generate(): #Generates the terrain
 ```
 I use ```FastNoiseLite``` to generate one-dimensional noise with a randomly picked seed value. The code is set up to snap the placed blocks to a 16px grid. In my code, I use arrays to randomly select decorations and special blocks. The end results looks like this:
 <br>
+
 ![Terrain](images/terrian.gif)
 
 In the above code I assigned variables random floats whenever I needed to roll a dice. But a much cleaner and more versitile solution would be to create a function that assignes a global variable:
@@ -135,3 +137,35 @@ func heal():
 			pass
 ```
 Here, we prevent the player from activating the ability if their health is above 50%, but this can be set to any ammount, depending on the pacing of your gameplay.
+<br>
+
+## Random Generators
+If your game requires a more predictable way of generation, maybe you're making a game like Minecraft, where players can share level seeds, you may want to roll your own number generator instead of relying on built in functions. In this section, I'll cover how generators work, with examples of some famous random number generators.
+<br>
+
+**Linear-Feedback Shift Register**
+Also just called an LFSR, this was the standard for RNG in retro video games. Everything from Pac-Man to Pokemon used it in some form. It works by taking a binary input and shifting the bits around to output a single binary value. This process would be repeated a number of times or continuously and then a sample of the whole string of outputs would be converted into an integer, and processed further whenever needed.
+<br>
+
+```gdscript
+#Tetris's LFSR
+var seed = 35208 #01000100110001000
+
+function lfsr(seed):
+  seed = ((((seed >> 9) & 1) ^ ((seed >> 1) & 1)) << 15) | (seed >> 1)
+  lfsr(seed)
+```
+A downside to LFSRs is that, because we are working with binary, there is a limit to how many it can generate before repeating. This limit depends on how you implement it. Tetri's lfsr works by taking the starting binary value and comparing the 1st and 9th bits in an ```xor``` operation. An ```Exlusive OR``` switch compares two boolean or binary states and only returns 1 if they are different. Otherwise it returns 0.
+<br>
+
+**Linear Congruential Generator**
+This algorithm is the star of Minecraft's world generation. It involves taking in the seed, multplying it by a random number, incrementing the result and taking the modulo with some number.
+<br>
+
+```gdscript
+# Minecraft's World Generator
+var seed = 8276324
+
+seed = ((25214903917 * seed) + 11) % pow(2,48) #result equals 113756703365023
+```
+<br>
