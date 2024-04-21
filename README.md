@@ -155,7 +155,8 @@ var bit = 1
 function lfsr(seed):
   bit = seed & 1
   seed = ((((seed >> 9) & 1) ^ ((seed >> 1) & 1)) << 15) | (seed >> 1)
-  lfsr(seed)
+
+lfsr(seed) #place in physics_process()
 ```
 A downside to LFSRs is that, because we are working with binary, there is a limit to how many it can generate before repeating. This limit depends on how you implement it. Tetri's lfsr works by taking the starting binary value and comparing the 1st and 9th bits in an ```xor``` operation. An ```Exlusive OR``` switch compares two boolean or binary states and only returns 1 if they are different. Otherwise it returns 0.
 <br>
