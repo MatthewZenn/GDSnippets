@@ -5,8 +5,8 @@ Just some useful Godot snippets for things.
 - [Procedural Terrain](#Procedural-Terrain)
 - [Health and Shield Gating](#Health-and-Shield-Gating)
 - [Titanfall Ability UI](#Titanfall's-Ability-Recharge)
-
 <br>
+
 ## Procedural Terrain
 
 Procedural Generation is all over the place. It mostly plays a role in creating level content in rogue-like and survival games. A simple Terraria-style 2D level generator can be done as follows: Create a ```Node2D``` scene to act as our chunk generator. For every tile add a ```StaticBody2D``` with a ```CollisionShape``` and ```Sprite2D``` as it's children, with each texture being assigned to the sprite. Add additional Sprite only textures for decorations, like grass and flowers. Then add a script to the scene:
@@ -67,7 +67,8 @@ coinFlip() #Called wherever needed.
 
 The main disadvantage to this, is that it can sometimes break things when multiple functions are using it. But for our terrain generator that only needs to run once, it works just fine.
 <br>
-# Health and Shield Gating
+
+## Health and Shield Gating
 Health Gating is a QoL feature in some games that prevents a player from being killed too quickly. It might not be an option for every games, especially in multiplayer shooters where Snipers and Shotguns are in play. But it can be a good accessability in other genres. Implementing such a system is as simple as containing our damage function in an if-statement that checks if the health is above our threshold, and if so, capping the damage to a set value.
 <br>
 
@@ -99,7 +100,7 @@ func health(damage: float):
 ```
 <br>
 
-# Titanfall's Ability Recharge
+## Titanfall's Ability Recharge
 This is my implementation of the UI for recharging abilities, as seen in Titanfall 2. To set this up, I set up our ui element for the ability icon and placed a translucent ```ProgressBar``` sized and aligned behind it. The functions below are set up to allow a grenade to be thrown twice, and are placed in our setup code and called in the ```physics_process```. The first function simply decreases the progress bar by 50% if the ability action is pressed, while the second function constinuously refills it when it is below 100%.
 <br>
 
