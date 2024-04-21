@@ -170,4 +170,3 @@ var seed = 8276324
 
 seed = ((25214903917 * seed) + 11) % pow(2,48) #result equals 113756703365023
 ```
-<br>
