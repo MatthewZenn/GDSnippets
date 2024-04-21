@@ -4,6 +4,7 @@ Just some useful Godot snippets for things.
 **Contents:**
 - [Procedural Terrain](#Procedural-Terrain)
 - [Health and Shield Gating](#Health-and-Shield-Gating)
+- [Titanfall Ability UI](#Titanfall's-Ability-Recharge)
 
 <br>
 ## Procedural Terrain
@@ -99,7 +100,7 @@ func health(damage: float):
 <br>
 
 # Titanfall's Ability Recharge
-This is my implementation of the UI for recharging abiliites, as seen in Titanfall 2. To set this up, I set up our ui element for the ability icon and placed a translucent ```ProgressBar``` sized and aligned behind it. The functions below are set up to allow a grenade to be thrown twice, and are placed in our setup code and called in the ```physics_process```. The first function simply decreases the progress bar by 50% if the ability action is pressed, while the second function constinuously refills it when it is below 100%.
+This is my implementation of the UI for recharging abilities, as seen in Titanfall 2. To set this up, I set up our ui element for the ability icon and placed a translucent ```ProgressBar``` sized and aligned behind it. The functions below are set up to allow a grenade to be thrown twice, and are placed in our setup code and called in the ```physics_process```. The first function simply decreases the progress bar by 50% if the ability action is pressed, while the second function constinuously refills it when it is below 100%.
 <br>
 
 ```gdscript
@@ -111,8 +112,9 @@ func grenade():
 
 func recharge():
 	if grenade_recharge.value < 100:
-		grenade_recharge.value += 0.2
+		grenade_recharge.value += 0.2 #controls the recharge speed
 ```
+Be sure to set the progress bar's ```Fill Mode``` to "Bottom to Top" The resulting effect is this:
 <br>
 
 ![Recharge](images/recharge.gif)
