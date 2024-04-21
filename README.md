@@ -5,6 +5,7 @@ Just some useful Godot snippets for things.
 - [Procedural Terrain](#Procedural-Terrain)
 - [Health and Shield Gating](#Health-and-Shield-Gating)
 - [Titanfall Ability UI](#Titanfall's-Ability-Recharge)
+
 <br>
 
 ## Procedural Terrain
