@@ -4,7 +4,7 @@ Just some useful Godot snippets for things.
 **Contents:**
 - [Procedural Terrain](#Procedural-Terrain)
 - [Health and Shield Gating](#Health-and-Shield-Gating)
-- [Titanfall Ability UI](#Titanfall's-Ability-Recharge)
+- [Titanfall's Ability Recharge](#Titanfall's-Ability-Recharge)
 
 <br>
 
