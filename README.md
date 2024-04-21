@@ -10,7 +10,6 @@ Just some useful Godot snippets for things.
 <br>
 
 ## Procedural Terrain
-
 Procedural Generation is all over the place. It mostly plays a role in creating level content in rogue-like and survival games. A simple Terraria-style 2D level generator can be done as follows: Create a ```Node2D``` scene to act as our chunk generator. For every tile add a ```StaticBody2D``` with a ```CollisionShape``` and ```Sprite2D``` as it's children, with each texture being assigned to the sprite. Add additional Sprite only textures for decorations, like grass and flowers. Then add a script to the scene:
 <br>
 ```gdscript
@@ -130,8 +129,7 @@ Our player also has an ability that fully restores their health. Combine this wi
 ```gdscript
 func heal():
 	if Input.is_action_just_pressed("res"):
-		if ablility_recharge.value == 100 and Health <= 50:
-			ablility_recharge.value = 0 #This is the code for the cooldown timer
+		if Health <= 50:
 			Health = 100
 		else:
 			pass
