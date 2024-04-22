@@ -158,7 +158,7 @@ function lfsr(seed):
 
 lfsr(seed) #place in physics_process()
 ```
-A downside to LFSRs is that, because we are working with binary, there is a limit to how many it can generate before repeating. This limit depends on how you implement it. Tetri's lfsr works by taking the starting binary value and comparing the 1st and 9th bits in an ```xor``` operation. An ```Exlusive OR``` switch compares two boolean or binary states and only returns 1 if they are different. Otherwise it returns 0.
+A downside to LFSRs is that, because we are working with binary, there is a limit to how many it can generate before repeating. This limit depends on how you implement it. Tetris's LFSR works by taking the starting binary value and comparing the 1st and 9th bits in an ```xor``` operation. An ```Exlusive OR``` switch compares two boolean or binary states and only returns 1 if they are different. Otherwise it returns 0.
 <br>
 
 **Linear Congruential Generator**
@@ -166,7 +166,7 @@ This algorithm is the star of Minecraft's world generation. It involves taking i
 <br>
 
 ```gdscript
-# Minecraft's World Generator
+#Minecraft's World Generator
 var seed = 8276324
 
 seed = ((25214903917 * seed) + 11) % pow(2,48) #result equals 113756703365023
