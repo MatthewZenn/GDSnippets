@@ -7,6 +7,7 @@ Just some useful Godot snippets for things.
 - [Titanfall's Ability Recharge](#Titanfall-Ability-Recharge)
 - [Context Abilities](#Context-Abilities)
 - [Random Generators](#Random-Generators)
+- [Hotdogs, Horseshoes, and hand Grenades](#Throwables)
 
 <br>
 
@@ -170,4 +171,17 @@ This algorithm is the star of Minecraft's world generation. It involves taking i
 var seed = 8276324
 
 seed = ((25214903917 * seed) + 11) % pow(2,48) #result equals 113756703365023
+```
+<br>
+
+## Throwables
+Let's throw stuff!
+
+```gdscript
+var grenadeChild = preload("res://Assets_Scenes/grenade.tscn") #goes in global space
+
+var grenade_instance = grenadeChild.instantiate()
+grenade_instance.global_position = camera.global_position
+grenade_instance.linear_velocity = -camera.global_transform.basis.z * 15
+get_parent().call_deferred("add_child", grenade_instance)
 ```
